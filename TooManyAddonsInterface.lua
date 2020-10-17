@@ -40,6 +40,7 @@ end
 
 TMA_FRAME_HEIGHT = 450  --had to halve this, for there are now 2 profile frames
 TMA_FRAME_WIDTH = 250
+TMA_ADDON_FRAME_WIDTH = 400
 TMA_HEIGHT_OF_BUTTON = 30
 TMA_COLUMN_WIDTH = 180
 TMA_GAP_BETWEEN_BUTTONS = 10
@@ -75,7 +76,7 @@ function TMAcreateinterface()
 
 
 	TMAaddonframe:SetHeight(TMA_FRAME_HEIGHT + 90)
-	TMAaddonframe:SetWidth(TMA_FRAME_WIDTH)
+	TMAaddonframe:SetWidth(TMA_ADDON_FRAME_WIDTH)
 	TMAaddonframe:SetPoint("topleft",TMAprofileframe,"topright", 150,0)
 	--broken in 7.1  :(
 	--TMAaddonframe:CreateTitleRegion()
@@ -224,7 +225,7 @@ function TMAcreateinterface()
 		TMAchooseglobalbutton:SetWidth(100)
 		TMAchooseglobalbutton:SetHeight(32)
 		TMAchooseglobalbutton:SetPoint("topleft",TMAprofileframe,"topright",25,-32)
-		TMAchooseglobalbutton:SetText("Make Global / Local")
+		TMAchooseglobalbutton:SetText("Global / Local")
 		TMAchooseglobalbutton:SetScript("OnClick",function()
 				TMAswitchtoglobalorlocal()
 						   end)
@@ -272,7 +273,27 @@ function TMAcreateinterface()
                 TMAhidetooltip()
 			end)
 
- 	--------------------------- game menu button --------------------------------------
+----------------- reset position
+			TMAresetpositionbutton = CreateFrame("Button",nil,TMAprofileframe,"UIPanelButtonTemplate")
+			TMAresetpositionbutton:SetHeight(32)
+			TMAresetpositionbutton:SetWidth(100)
+			TMAresetpositionbutton:SetText("Reset Position")
+			TMAresetpositionbutton:SetPoint("TOP",TMAloadbutton,"bottom",0,-32)
+			TMAresetpositionbutton:SetScript("OnClick",function()
+			        local TMAprofileframe = getglobal(TMA_PROFILE_LIST_NAME.."frame")
+			        TMAprofileframe:ClearAllPoints()
+			        --TMAprofileframe:SetPoint("topleft", UIParent, 100, -100)
+			        TMAprofileframe:SetPoint("topleft",UIParent,"topleft",100,-100)
+			        TMAprofileframe:SetPoint("bottomright",UIParent,"topleft",100+TMA_FRAME_WIDTH,-(100+TMA_FRAME_HEIGHT))
+			end)
+			TMAresetpositionbutton:SetScript("OnEnter",function(self)
+				TMAshowtooltip(self,"Reset position of frames to default")
+			end)
+			TMAresetpositionbutton:SetScript("OnLeave",function()
+                 TMAhidetooltip()
+			end)
+
+			--------------------------- game menu button --------------------------------------
 
 		TMAgamemenubutton = CreateFrame("Button","GameMenuButtonTMAAddOns",GameMenuFrame,"GameMenuButtonTemplate")
 			TMAgamemenubutton:SetText("TooManyAddons")
@@ -452,7 +473,7 @@ function TMAcreateinterface()
 end  --end make interface
 
 function TMAcreatepopupoptions()  --not in use yet
-	TMApopupoptions = CreateFrame("Frame","TMApopupoptions")
+	TMApopupoptions = CreateFrame("Frame","TMApopupoptions",UIParent,"BackdropTemplate")
    --TMApopupoptions:SetPoint("TOP","$UIparent","Bottomright")
    --TMApopupoptions:SetHeight((AS_BUTTON_HEIGHT + AS_FRAMEWHITESPACE )* 4) --4 buttons
    TMApopupoptions:SetHeight((25* 1) + (8 * 2))  --1 buttons
@@ -785,7 +806,7 @@ function TMAcreatechecklist(name)
 		return getglobal(name.."frame")
 	else
 	-- make the global frame
-		local ourframe = CreateFrame("Frame",name.."frame",UIParent)
+		local ourframe = CreateFrame("Frame",name.."frame",UIParent,"BackdropTemplate")
 		ourframe:SetWidth(TMA_FRAME_WIDTH)
 		ourframe:SetHeight(TMA_FRAME_HEIGHT)
 		ourframe:SetPoint("TOPLEFT",200,-200)

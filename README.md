@@ -1,5 +1,3 @@
-Updated 10/17/2020
-
 Minimalistic mod / addon manager that can be used to create sets of addons that will be loaded for specific scenarios.  For example, you can load different sets for different types of gameplay.  This can help to minimize confict, minimize memory use, and minimize UI clutter, each tailored to your current gaming session.  Example variants;
 
     * Questing
@@ -11,6 +9,7 @@ Minimalistic mod / addon manager that can be used to create sets of addons that 
     * Herb Farming
     * Auctioning
 
+This is a fork of abandoned TooManyAddons addon, initially updated to work with breaking Shadowlands UI background changes.
 
 Directions:
 
@@ -21,7 +20,7 @@ Directions:
     * When it is time to change addons, select the profile, then click 'Load Profile'
 
 
-features that aren't instantly obvious:
+Features that aren't instantly obvious:
 
     * '/TMAC aProfile' will instantly load that profile. Handy for you macrophiles. Spelling must be exact.
     * The interface can be moved by dragging the 'profile' frame. You have to click on the edge of the frame or a clear spot. 
@@ -36,4 +35,3 @@ features that aren't instantly obvious:
     * Clicking a sort method that is already clicked will reverse the list.  Eg. Alphabetical from A-Z or, if you click it again, Z-A.
     * The most recently loaded profile(s) appear green.
     * The Reset Position button will return the frames to their default position.  Helpful for multiboxers using mouse broadcasts to synchronize addon sets between accounts.
-    

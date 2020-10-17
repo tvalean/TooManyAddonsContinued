@@ -1,0 +1,11 @@
+## Interface: 90001
+## Title: TooManyAddonsContinued
+## Notes: Addon Manager
+## Author: Tvalean
+## Version: v9.01r1
+## Dependencies:
+## SavedVariables: TMAsettings,TMAdebug
+## SavedVariablesPerCharacter: TMAprofiles, TMAlastgloballoaded
+
+TooManyAddonsInterface.lua
+TooManyAddons.lua

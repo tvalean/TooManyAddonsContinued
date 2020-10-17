@@ -38,6 +38,9 @@ function TMA_onload()
 	SLASH_TMA2 = "/tma";
 	SLASH_TMA3 = "/TooManyAddons";
 	SLASH_TMA4 = "/toomanyaddons";
+	SLASH_TMA5 = "/TMAC"
+	SLASH_TMA6 = "/tmac"
+
 	SlashCmdList["TMA"] = TMA;
 
 	TMAcreateinterface()
@@ -335,10 +338,12 @@ function TMAinitialize()
    if TMAprofileframe then
 		if(TMAsettings.profilepoints) then
 			TMAprint("TMAsettings.profilepoints found!")
+			TMAprofileframe:ClearAllPoints()
 			TMAprofileframe:SetPoint("topleft",UIParent,"bottomleft",TMAsettings.profilepoints.left,TMAsettings.profilepoints.top)
 			TMAprofileframe:SetPoint("bottomright",UIParent,"bottomleft",TMAsettings.profilepoints.right,TMAsettings.profilepoints.bottom)
 		else
 			TMAprint("TMAsettings.profilepoints |c00ff0000NOT |rfound!")
+			TMAprofileframe:ClearAllPoints()
 			--DEFAULTS.  will be overriden if there's saved values
 			TMAprofileframe:SetPoint("topleft",UIParent,"topleft",100,-100)
 			TMAprofileframe:SetPoint("bottomright",UIParent,"topleft",100+TMA_FRAME_WIDTH,-(100+TMA_FRAME_HEIGHT))
@@ -650,7 +655,7 @@ function TMAcreatealwaysprofile()
 		table.insert(theonetable,{})
 		theonetable[#theonetable].isglobal = false
 		theonetable[#theonetable].profilename = TMAALWAYSPROFILE
-		theonetable[#theonetable]["toomanyaddons"] = true  -- case matters :(
+		theonetable[#theonetable]["TooManyAddonsContinued"] = true  -- case matters :(
 
 	end
 
@@ -662,16 +667,15 @@ function TMA(input)
 	if(input) then
 		if(input == "help") then
 			local helpspam = {}
-			 helpspam[1] = "*** Welcome to TooManyAddons!  Features that aren't instantly obvious:\n*There is a new 'addon' button in the game menu, that opens up the TooManyAddons interface.\n* '/TMA' will also open up the interface."
-			 helpspam[2] = "\n* '/TMA someProfile' will instantly load that profile.\n  Handy for you macrophiles.  Spelling is  exact."
+			 helpspam[1] = "*** Welcome to TooManyAddonsContinued!  Features that aren't instantly obvious:\n*There is a new 'addon' button in the game menu, that opens up the TooManyAddonscontinued interface.\n* '/TMAC' will also open up the interface."
+			 helpspam[2] = "\n* '/TMAC someProfile' will instantly load that profile.\n  Handy for you macrophiles.  Spelling is  exact."
 			 helpspam[3] = "\n* The interface can be moved by dragging the 'profile' frame.\n  You have to click on the edge of the frame or a clear spot."
-			 helpspam[4] = "\n* A profile called 'Default' is created at the very first use of TooManyAddons, for your convenience.  Feel free to delete it."
-			 helpspam[5] = "\n* A profile called 'Always Load These Addons' will always exist.  Anything checked in this profile will always load, no matter what.  The checked items will appear grey or shiny in other profiles.  By default, TooManyAddons will be checked in this profile."
+			 helpspam[4] = "\n* A profile called 'Default' is created at the very first use of TooManyAddonsContinued, for your convenience.  Feel free to delete it."
+			 helpspam[5] = "\n* A profile called 'Always Load These Addons' will always exist.  Anything checked in this profile will always load, no matter what.  The checked items will appear grey or shiny in other profiles.  By default, TooManyAddonsContinued will be checked in this profile."
 			 helpspam[6] = "\n* Tooltips show you the description of the addon.\n* Clicking an addon will automatically click all of its dependencies."
-			 helpspam[7] = "\n* Addons with the same first four letters are grouped up.\n Clicking the head of a group will act as if you clicked everything in the group."
 			 helpspam[8] = "\n* Hold down the Ctrl or Shift key when selecting profiles to load addons from multiple profiles."
 			 helpspam[9] = "\n* The most recently loaded profile(s) will appear green."
-			 helpspam[10] = "\n* '/TMA hidebutton' will remove the 'addon' button in the game menu."
+			 helpspam[10] = "\n* '/TMAC hidebutton' will remove the 'addon' button in the game menu."
 
 			 for i = 1,#helpspam do
 				 DEFAULT_CHAT_FRAME:AddMessage(helpspam[i])
@@ -1938,7 +1942,7 @@ function TMAonenterfunction(self)
 		self:SetHighlightTexture("") --disable highlight
 
 		if(not TMAmovetoindicator) then
-			TMAmovetoindicator = CreateFrame("Button","TMAmovetoindicator",ourframe)
+			TMAmovetoindicator = CreateFrame("Button","TMAmovetoindicator",ourframe,"BackdropTemplate")
 		end
 		TMAmovetoindicator:Show()
 		TMAmovetoindicator:SetHeight(2)
