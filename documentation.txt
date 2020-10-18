@@ -1,6 +1,6 @@
 Updated 10/17/2020
 
-Minimalistic mod / addon manager that can be used to create sets of addons that will be loaded for specific scenarios.  For example, you can load different sets for different types of gameplay.  This can help to minimize confict, minimize memory use, and minimize UI clutter, each tailored to your current gaming session.  Example variants;
+Minimalistic mod / addon manager that can be used to create sets of addons that will be loaded for specific scenarios. For example, you can load different sets for different types of gameplay. This can help to minimize confict, minimize memory use, and minimize UI clutter, each tailored to your current gaming session. Example variants;
 
     * Questing
     * PvP
